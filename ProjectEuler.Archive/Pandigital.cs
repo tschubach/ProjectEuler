@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ProjectEuler.Utilities;
 
 namespace ProjectEuler
 {
-	internal static class Pandigital
+    internal static class Pandigital
 	{
 		public static List<string> Permutations(int maxDigit, bool includeZero)
 		{
@@ -16,7 +16,7 @@ namespace ProjectEuler
 				temp += i.ToString();
 			}
 
-			List<string> permutations = Utilities.Permutate(temp, includeZero);
+			List<string> permutations = Helpers.Permutate(temp, includeZero);
 			return permutations;
 		}
 
@@ -41,10 +41,10 @@ namespace ProjectEuler
 					num += j.ToString();
 				}
 
-				var permutations = Utilities.Permutate(long.Parse(num), false);
+				var permutations = Helpers.Permutate(long.Parse(num), false);
 				for (int k = permutations.Count() - 1; k >= 0; k--)
 				{
-					if (Utilities.IsPrime(long.Parse(permutations[k])))
+					if (Helpers.IsPrime(long.Parse(permutations[k])))
 					{
 						maxFound = true;
 						result = long.Parse(permutations[k]);

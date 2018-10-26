@@ -6,6 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Archive.cs" />
+    <Compile Remove="CodedTriangleNumber.cs" />
+    <Compile Remove="CollatzSequence.cs" />
+    <Compile Remove="Fraction.cs" />
+    <Compile Remove="LargestProductInAGrid.cs" />
+    <Compile Remove="NumbersToWords.cs" />
+    <Compile Remove="Pandigital.cs" />
+    <Compile Remove="PowersOfTwo.cs" />
+    <Compile Remove="Prime.cs" />
+    <Compile Remove="Utilities.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectEuler.Utilities\ProjectEuler.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System">
       <HintPath>System</HintPath>
     </Reference>

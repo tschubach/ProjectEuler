@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using ProjectEuler.Utilities;
 
-namespace ProjectEuler
+namespace ProjectEuler.Archive
 {
     internal sealed class Archive
     {
-         /// <summary>
+        /// <summary>
         /// Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
         /// where each “_” is a single digit.
         /// </summary>
@@ -122,7 +123,7 @@ namespace ProjectEuler
                 {
                     int test = p * q;
 
-                    if (result < test && Utilities.IsPalindrome(test))
+                    if (result < test && Helpers.IsPalindrome(test))
                     {
                         result = test;
 
@@ -277,7 +278,7 @@ namespace ProjectEuler
         private static int MaximumPathSum()
         {
             string filename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\p067_triangle.txt";
-            int[,] inputTriangle = Utilities.ReadInput(filename);
+            int[,] inputTriangle = Helpers.ReadInput(filename);
             int lines = inputTriangle.GetLength(0);
 
             for (int i = lines - 2; i >= 0; i--)
@@ -318,7 +319,7 @@ namespace ProjectEuler
         {
             long total = 0;
             string filename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\p022_names.txt";
-            var names = Utilities.ReadLinesFromFile(filename, ",");
+            var names = Helpers.ReadLinesFromFile(filename, ',');
 
             names.Sort();
 
@@ -356,12 +357,12 @@ namespace ProjectEuler
             var limit = 28123;
             var abundant = new List<int>();
             var total = 0;
-            long[] primeList = Utilities.ESieve((long)Math.Sqrt(limit));
+            long[] primeList = Helpers.ESieve((long)Math.Sqrt(limit));
 
             // Get list of abundant numbers between 12 and 28123 (inclusive)
             for (int i = 2; i <= limit; i++)
             {
-                if (Utilities.SumOfFactorsPrime(i, primeList) > i)
+                if (Helpers.SumOfFactorsPrime(i, primeList) > i)
                 {
                     abundant.Add(i);
                 }
@@ -400,14 +401,14 @@ namespace ProjectEuler
         {
 
             long sumAmicable = 0;
-            long[] primeList = Utilities.ESieve((long)Math.Sqrt(upperLimit) + 1);
+            long[] primeList = Helpers.ESieve((long)Math.Sqrt(upperLimit) + 1);
 
             for (int i = 2; i <= upperLimit; i++)
             {
-                var factors1 = Utilities.SumOfFactorsPrime(i, primeList);
+                var factors1 = Helpers.SumOfFactorsPrime(i, primeList);
                 if (factors1 > i && factors1 <= upperLimit)
                 {
-                    var factors2 = Utilities.SumOfFactorsPrime(factors1, primeList);
+                    var factors2 = Helpers.SumOfFactorsPrime(factors1, primeList);
                     if (factors2 == i)
                     {
                         sumAmicable += i + factors1;
@@ -463,7 +464,7 @@ namespace ProjectEuler
             long aMax = 0;
             long bMax = 0;
             long nMax = 0;
-            long[] bPos = Utilities.ESieve(maxCoefficient);
+            long[] bPos = Helpers.ESieve(maxCoefficient);
 
             for (int a = -999; a < 1001; a += 2)
             {
@@ -474,7 +475,7 @@ namespace ProjectEuler
                         int n = 0;
                         int sign = (j == 0) ? 1 : -1;
                         int aodd = (i % 2 == 0) ? -1 : 0; // Making a even if b is even
-                        while (Utilities.IsPrime(Math.Abs(n * n + (a + aodd) * n + sign * bPos[i])))
+                        while (Helpers.IsPrime(Math.Abs(n * n + (a + aodd) * n + sign * bPos[i])))
                         {
                             n++;
                         }
@@ -548,7 +549,7 @@ namespace ProjectEuler
 
             for (int i = 2; i < value; i++)
             {
-                if (Utilities.IsPrime(i))
+                if (Helpers.IsPrime(i))
                 {
                     result += i;
                 }
@@ -565,7 +566,7 @@ namespace ProjectEuler
             while (numPrimes < max)
             {
                 numm = numm + 2;
-                if (Utilities.IsPrime(numm))
+                if (Helpers.IsPrime(numm))
                 {
                     numPrimes++;
                 }
@@ -814,8 +815,8 @@ namespace ProjectEuler
                 return numerator;
             }
 
-            var numFactors = Utilities.PrimeFactors(numerator);
-            var denomFactors = Utilities.PrimeFactors(denominator);
+            var numFactors = Helpers.PrimeFactors(numerator);
+            var denomFactors = Helpers.PrimeFactors(denominator);
             long maxFactor = 1;
 
             for (int i = denomFactors.Count - 1; i >= 0; i--)
@@ -887,11 +888,11 @@ namespace ProjectEuler
                 return false;
             }
 
-            var rotations = Utilities.Rotations(value);
+            var rotations = Helpers.Rotations(value);
 
             foreach (var item in rotations)
             {
-                if (!Utilities.IsPrime(item))
+                if (!Helpers.IsPrime(item))
                 {
                     return false;
                 }
@@ -907,10 +908,10 @@ namespace ProjectEuler
 
             for (int i = 1; i < upper; i += 2)
             {
-                if (Utilities.IsPalindrome(i.ToString()))
+                if (Helpers.IsPalindrome(i.ToString()))
                 {
-                    var base2 = Utilities.IntToBase(i, 2);
-                    if (Utilities.IsPalindrome(base2))
+                    var base2 = Helpers.IntToBase(i, 2);
+                    if (Helpers.IsPalindrome(base2))
                     {
                         palindromes.Add(i);
                     }
@@ -964,26 +965,26 @@ namespace ProjectEuler
                     continue;
                 }
 
-                if (Utilities.IsPrime(num))
+                if (Helpers.IsPrime(num))
                 {
                     // Run the number through 2 loops - one to successively remove digits from right-to-left,
                     // checking if the result is prime; the other to remove digits from left-to-right
                     //    n / 10 - remove digits from right to left
                     //    n % 10 - remove digits from left to right
                     // If any pass fails the prime test, continue to next integer
-                    var digits = Utilities.NumDigits(modValue);
+                    var digits = Helpers.NumDigits(modValue);
                     truncValue = truncValue / 10;
                     modValue = modValue % (int)(Math.Pow(10, digits - 1));
                     while (truncValue != 0 && modValue != 0)
                     {
-                        if (!Utilities.IsPrime(truncValue) || !Utilities.IsPrime(modValue))
+                        if (!Helpers.IsPrime(truncValue) || !Helpers.IsPrime(modValue))
                         {
                             isTruncatable = false;
 
                             break;
                         }
 
-                        digits = Utilities.NumDigits(modValue);
+                        digits = Helpers.NumDigits(modValue);
                         truncValue = truncValue / 10;
                         modValue = (modValue < 10) ? 0 : modValue % (int)(Math.Pow(10, digits - 1));
                     }
@@ -1014,8 +1015,8 @@ namespace ProjectEuler
 
             for (int i = 9387; i >= 9234; i--)
             {
-                var test = Utilities.Concatenate(i, 2 * i);
-                if (Utilities.IsPandigital(test) && test > result)
+                var test = Helpers.Concatenate(i, 2 * i);
+                if (Helpers.IsPandigital(test) && test > result)
                 {
                     result = test;
                 }
@@ -1058,9 +1059,9 @@ namespace ProjectEuler
         {
             ulong result = 0;
 
-            var triangles = Utilities.TriangleSeries(1000000);
-            var pentagons = Utilities.PentagonSeries(1000000);
-            var hexagons = Utilities.HexagonSeries(1000000);
+            var triangles = Helpers.TriangleSeries(1000000);
+            var pentagons = Helpers.PentagonSeries(1000000);
+            var hexagons = Helpers.HexagonSeries(1000000);
 
             for (int i = 285; i < triangles.Count; i++)
             {
@@ -1091,9 +1092,9 @@ namespace ProjectEuler
                 next += 2;
                 counter++;
 
-                if (!Utilities.IsPrime(next))
+                if (!Helpers.IsPrime(next))
                 {
-                    foreach (var prime in Utilities.Primes(next))
+                    foreach (var prime in Helpers.Primes(next))
                     {
                         if ((next - prime) % 2 == 0)
                         {
@@ -1127,7 +1128,7 @@ namespace ProjectEuler
 
             while (count < run)
             {
-                if (Utilities.PrimeFactors(number).Count == run)
+                if (Helpers.PrimeFactors(number).Count == run)
                 {
                     if (distinct.Count != 0)
                     {
@@ -1156,7 +1157,7 @@ namespace ProjectEuler
 
             for (int i = 11; i <= 1000; i++)
             {
-                result += Utilities.SelfPower(i);
+                result += Helpers.SelfPower(i);
             }
 
             int len = result.ToString().Length;
@@ -1164,5 +1165,83 @@ namespace ProjectEuler
             return result.ToString().Substring(len - 10);
         }
 
-   }
+        private static int SquareDigitChains()
+        {
+            var result = 0;
+
+            for (int i = 2; i < 10000000; i++)
+            {
+                long next = i;
+                while (next != 89 && next != 1)
+                {
+                    long temp = 0;
+                    foreach (var item in Helpers.DigitArray(next))
+                    {
+                        temp += (item * item);
+                    }
+
+                    next = temp;
+                }
+
+                if (next == 89)
+                {
+                    result++;
+                }
+            }
+
+            return result;
+        }
+
+        private static string PrimePermutations()
+        {
+            var result = "";
+            var primes = Prime.NDigitPrimes(4);
+            var primePerms = new List<long>();
+            var count = 0;
+            var temp = "";
+
+            primes.Sort();
+
+            for (int i = 1001; i < 10000; i++)
+            {
+                if (i == 1487 || i == 4817 || i == 8147 || !primes.Contains(i))
+                {
+                    continue;
+                }
+
+                var maxStep = (int)((10000 - i) / 2);
+                var step = 0;
+                while (step <= maxStep)
+                {
+                    step++;
+                    var prime1 = i + step;
+                    var prime2 = i + (step * 2);
+
+                    if (!primes.Contains(prime1) || !primes.Contains(prime2))
+                    {
+                        continue;
+                    }
+
+                    if (!Helpers.IsPermutation(i, prime1) || !Helpers.IsPermutation(i, prime2))
+                    {
+                        continue;
+                    }
+
+                    // If we get here, we've found the answer
+                    result = i.ToString() + prime1.ToString() + prime2.ToString();
+
+                    break;
+                } // end while
+
+                if (result.Length > 0)
+                {
+                    break;
+                }
+
+            } // end for
+
+            return result;
+        }
+
+    }
 }

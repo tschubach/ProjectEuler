@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using ProjectEuler.Utilities;
 
 namespace ProjectEuler
 {
@@ -12,7 +8,7 @@ namespace ProjectEuler
         public static int Run()
         {
             string filename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\p042_words.txt";
-            var words = Utilities.ReadLinesFromFile(filename, ",");
+            var words = Helpers.ReadLinesFromFile(filename, ',');
             var count = 0;
 
             for (int i = 0; i < words.Count; i++)
@@ -22,7 +18,7 @@ namespace ProjectEuler
 
             foreach (var word in words)
             {
-                if (Utilities.IsTriangleWord(Utilities.WordScore(word)))
+                if (Helpers.IsTriangleWord(Helpers.WordScore(word)))
                 {
                     count++;
                 }
