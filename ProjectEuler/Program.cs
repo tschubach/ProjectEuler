@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ProjectEuler
 {
@@ -9,7 +8,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: \n" + RomanNumerals.Problem89());
+                Console.WriteLine("Answer: \n" + TrinaryTriumph.LargestPrimeFactor(600851475143));
             }
             catch (Exception e)
             {
@@ -20,6 +19,5 @@ namespace ProjectEuler
                 Console.ReadLine();
             }
         }
-
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ProjectEuler.Utilities;
 
-namespace ProjectEuler
+namespace ProjectEuler.Archive
 {
     internal static class RomanNumerals
     {

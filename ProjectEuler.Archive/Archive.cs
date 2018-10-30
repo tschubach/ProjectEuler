@@ -46,21 +46,6 @@ namespace ProjectEuler.Archive
 
         }
 
-        private static int MultiplesOf3And5()
-        {
-            var result = 0;
-
-            for (int i = 1; i < 1000; i++)
-            {
-                if ((i % 3) == 0 || (i % 5) == 0)
-                {
-                    result += i;
-                }
-            }
-
-            return result;
-        }
-
         private static int EvenFibonacci()
         {
             int result = 0;
@@ -459,40 +444,6 @@ namespace ProjectEuler.Archive
 
         }
 
-        private static long QuadraticPrimes(int maxCoefficient)
-        {
-            long aMax = 0;
-            long bMax = 0;
-            long nMax = 0;
-            long[] bPos = Helpers.ESieve(maxCoefficient);
-
-            for (int a = -999; a < 1001; a += 2)
-            {
-                for (int i = 1; i < bPos.Length; i++)
-                {
-                    for (int j = 0; j < 2; j++)
-                    {
-                        int n = 0;
-                        int sign = (j == 0) ? 1 : -1;
-                        int aodd = (i % 2 == 0) ? -1 : 0; // Making a even if b is even
-                        while (Helpers.IsPrime(Math.Abs(n * n + (a + aodd) * n + sign * bPos[i])))
-                        {
-                            n++;
-                        }
-
-                        if (n > nMax)
-                        {
-                            aMax = a;
-                            bMax = bPos[i];
-                            nMax = n;
-                        }
-                    }
-                }
-            }
-
-            return (aMax * bMax);
-        }
-
         private static int DistinctPowers()
         {
             var powers = new List<double>();
@@ -601,62 +552,6 @@ namespace ProjectEuler.Archive
                     break;
                 }
             }
-
-            return result;
-        }
-
-        private static long PythagoreanTripletProduct(int maxSum)
-        {
-            var result = 0;
-
-            // For integers m and n, where m > n, either (but NOT both) m or n is odd, and both are positive:
-            // a = (m^2 - n^2)
-            // b = 2mn
-            // c = (m^2 ^ n^2)
-
-            double m;
-            double n;
-            int a = 0;
-            int b = 0;
-            int c = 0;
-            int total = 0;
-            bool matchFound = false;
-
-            m = 2;
-            while (!matchFound)
-            {
-                n = 1;
-                while (n < m)
-                {
-
-                    a = (int)(Math.Pow(m, 2) - Math.Pow(n, 2));
-                    b = (int)(2 * m * n);
-                    c = (int)(Math.Pow(m, 2) + Math.Pow(n, 2));
-
-                    total = (a + b + c);
-
-                    if (total == maxSum)
-                    {
-                        int multiplier = maxSum / total;
-                        result = multiplier * a * b * c;
-                        matchFound = true;
-
-                        break;
-                    }
-
-                    n++;
-                }
-
-                if (matchFound)
-                {
-                    break;
-                }
-
-                m++;
-            }
-
-            Console.WriteLine($"a: {a}; b: {b}; c: {c}; total: {total}");
-            Console.WriteLine($"product: {result}");
 
             return result;
         }
@@ -1242,6 +1137,5 @@ namespace ProjectEuler.Archive
 
             return result;
         }
-
     }
 }
