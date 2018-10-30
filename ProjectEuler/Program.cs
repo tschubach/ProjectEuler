@@ -9,7 +9,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: \n" + RomanNumerals.Problem89());
+                Console.WriteLine("Answer: " + RomanNumerals.Problem89());
             }
             catch (Exception e)
             {
