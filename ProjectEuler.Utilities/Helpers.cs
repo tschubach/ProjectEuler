@@ -9,6 +9,7 @@ namespace ProjectEuler.Utilities
 {
     public static class Helpers
 	{
+
 	    public static List<string> ReadLinesFromFile(string filename)
 		{
 			var line = "";
@@ -92,7 +93,6 @@ namespace ProjectEuler.Utilities
 
 			return result;
 		}
-
 
 		public static List<long> FindFactors(long num)
 		{
