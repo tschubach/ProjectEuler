@@ -8,7 +8,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: \n" + TrinaryTriumph.PathSumTwoWays());
+                Console.WriteLine("Answer: \n" + TrinaryTriumph.Resilience());
             }
             catch (Exception e)
             {

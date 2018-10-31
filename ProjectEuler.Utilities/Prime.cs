@@ -1014,5 +1014,10 @@ namespace ProjectEuler.Utilities
         {
             return (_primesArray.ToList().Where(p => p.ToString().Length == digits)).ToList();
         }
+
+        public static int[] Primes()
+        {
+            return _primesArray;
+        }
     }
 }
