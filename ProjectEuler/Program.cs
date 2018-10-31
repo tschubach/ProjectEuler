@@ -8,7 +8,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: \n" + TrinaryTriumph.LargestPrimeFactor(600851475143));
+                Console.WriteLine("Answer: \n" + TrinaryTriumph.PathSumTwoWays());
             }
             catch (Exception e)
             {
