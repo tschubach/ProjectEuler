@@ -203,10 +203,15 @@ namespace ProjectEuler
             var nMax = 15499;
             var dMax = 94744;
 
-            long denominator = 2;
+            long denominator = 10001;
 
             while (denominator < 1000000000)
             {
+                if (denominator % 1000000 == 0)
+                {
+                    Console.WriteLine(denominator.ToString());
+                }
+
                 long totient = phi(denominator);
                 if ((totient / (denominator - 1)) < (nMax / dMax))
                 {
@@ -230,32 +235,22 @@ namespace ProjectEuler
         /// <returns>Number of resilient fractions</returns>
 	    public static long phi(long denominator)
         {
-            // 1. All prime numbers have a resiliency of 1
-            // 2. The first and last fraction are always resilient
-            // 3. All fractions with a prime numerator that is not a factor
-            //    of the denominator are resilient
-            // 4. Numerators that share no prime factors with the denominator are resilient
-            long count = 1;
+            // Totient (phi) = n * (1 - 1/p1) * (1 - 1/p2) ... (1 - 1/pN)
+            // where p1 - pN are the prime factors of n
+            long totient = 1;
 
             if (!Helpers.IsPrime(denominator))
             {
-                var denPrimes = Helpers.PrimeFactors(denominator);
-                count = 2;  // First and last fractions are always resilient
-                
-                for (int i = 2; i < denominator - 1; i++)
+                var primes = Helpers.PrimeFactors(denominator);
+                foreach (var prime in primes)
                 {
-                    if (denominator % i != 0) // Numerator is not a factor of the denominator
-                    {
-                        var numPrimes = Helpers.PrimeFactors(i);
-                        if (!denPrimes.Any(p => numPrimes.Contains(p)))  // Prime factors of numerator and denominator are unique
-                        {
-                            count++;
-                        }
-                    }
+                    totient *= (1 - (1 / prime));
                 }
+
+                totient *= denominator;
             }
 
-            return count;
+            return totient;
         }
     }
 }
