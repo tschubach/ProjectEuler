@@ -8,7 +8,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: \n" + TrinaryTriumph.Resilience());
+                Console.WriteLine("Answer: " + ContinuedFractions.OddPeriodicSquares());
             }
             catch (Exception e)
             {

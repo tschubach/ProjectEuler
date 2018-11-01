@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Net.Http.Headers;
 using ProjectEuler.Utilities;
 
 namespace ProjectEuler
@@ -198,27 +196,21 @@ namespace ProjectEuler
             // 3. All fractions with a prime numerator that is not a factor
             //    of the denominator are resilient
             // 4. Numerators that share no prime factors with the denominator are resilient
-            double resilience = 0;
-            double rMax = 15499 / 94744;
-            var nMax = 15499;
-            var dMax = 94744;
+            double rMax = ((double)15499 / (double)94744);
 
-            long denominator = 10001;
+            long denominator = 1000000000;
+            var totient = (long)(denominator - 1);
 
-            while (denominator < 1000000000)
+            while (((double)totient / (double)(denominator - 1)) > rMax)
             {
+                denominator--;
                 if (denominator % 1000000 == 0)
                 {
                     Console.WriteLine(denominator.ToString());
                 }
 
-                long totient = phi(denominator);
-                if ((totient / (denominator - 1)) < (nMax / dMax))
-                {
-                    break;
-                }
-
-                denominator++;
+                totient = phi(denominator);
+                double resilience = (double) totient / (double) (denominator - 1);
             }
 
             return denominator;
@@ -237,20 +229,17 @@ namespace ProjectEuler
         {
             // Totient (phi) = n * (1 - 1/p1) * (1 - 1/p2) ... (1 - 1/pN)
             // where p1 - pN are the prime factors of n
-            long totient = 1;
+            double totient = 1;
 
-            if (!Helpers.IsPrime(denominator))
+            var primes = Helpers.PrimeFactors(denominator);
+            foreach (var prime in primes)
             {
-                var primes = Helpers.PrimeFactors(denominator);
-                foreach (var prime in primes)
-                {
-                    totient *= (1 - (1 / prime));
-                }
-
-                totient *= denominator;
+                totient *= 1 - (double)((double)1 / (double)prime);
             }
 
-            return totient;
+            totient *= denominator;
+
+            return (long)totient;
         }
     }
 }

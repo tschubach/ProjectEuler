@@ -5,7 +5,7 @@ namespace ProjectEuler.Utilities
 {
     public sealed class Prime
     {
-        private static readonly int[] _primesArray = new int[10000]
+        private static readonly long[] _primesArray = new long[10000]
         {
             2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
             31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
@@ -1010,12 +1010,12 @@ namespace ProjectEuler.Utilities
 
         };
 
-        public static List<int> NDigitPrimes(int digits)
+        public static List<long> NDigitPrimes(int digits)
         {
             return (_primesArray.ToList().Where(p => p.ToString().Length == digits)).ToList();
         }
 
-        public static int[] Primes()
+        public static long[] Primes()
         {
             return _primesArray;
         }

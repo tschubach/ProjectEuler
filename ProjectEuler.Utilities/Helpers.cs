@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace ProjectEuler.Utilities
 {
@@ -338,17 +340,24 @@ namespace ProjectEuler.Utilities
 
 		public static bool IsPrime(long candidate)
 		{
-			if (candidate == 2 || candidate == 3)
-			{
-				return true;
-			}
+            if (Prime.Primes().ToList().Contains(candidate))
+		    {
+                return true;
+		    }
 
-			if (candidate <= 1 || candidate % 2 == 0 || candidate % 3 == 0)
+			//if (candidate == 2 || candidate == 3)
+			//{
+			//	return true;
+			//}
+
+			if (candidate <= 1 ||
+			    candidate % 2 == 0 ||
+			    candidate % 3 == 0 ||
+			    candidate % 5 == 0 ||
+			    candidate % 7 == 0)
 			{
 				return false;
 			}
-
-			//int counter = 3;
 
 			long i = 5;
 			long w = 2;
