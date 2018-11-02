@@ -8,7 +8,7 @@ namespace ProjectEuler
         {
             try
             {
-                Console.WriteLine("Answer: " + ContinuedFractions.OddPeriodicSquares());
+                Console.WriteLine("Answer: " + ContinuedFractions.FractionPeriod(Math.Sqrt(3)));
             }
             catch (Exception e)
             {

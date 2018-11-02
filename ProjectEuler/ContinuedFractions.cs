@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
-using System.Reflection.Metadata;
 
 namespace ProjectEuler
 {
@@ -45,13 +44,13 @@ namespace ProjectEuler
 
         internal static int OddPeriodicSquares()
         {
-            int upperBound = 3;
+            int upperBound = 10000;
             int result = 0;
 
-            for (int n = 3; n <= upperBound; n++)
+            for (int n = 2; n <= upperBound; n++)
             {
-                int a0 = (int) Math.Sqrt(n);
-                
+                int a0 = (int)Math.Sqrt(n);
+
                 if (a0 * a0 == n)
                 {
                     continue;
@@ -68,7 +67,7 @@ namespace ProjectEuler
                     d = (n - m * m) / d;
                     a = (a0 + m) / d;
                     period++;
-                } while (a != 2*a0);
+                } while (a != 2 * a0);
 
                 if (period % 2 == 1)
                 {
@@ -78,22 +77,23 @@ namespace ProjectEuler
 
             return result;
         }
- 
-        private static int FractionPeriod(double value)
+
+        public static int FractionPeriod(double value)
         {
-            var period = 0;
+            int period = 0;
             double number = value;
+            List<double> mantissas = new List<double>();
+
             int term = (int)number;
-            double mantissa = 1 / (value - term);
-            var mantissas = new List<double>();
+            double mantissa = (value - term);
 
             while (!mantissas.Contains(mantissa))
             {
-                period++;
                 mantissas.Add(mantissa);
-                number = (1 / mantissa);
-                term = (int)number;
-                mantissa = 1 / (value - term);
+                period++;
+                var reciprocal = 1 / mantissa;
+                term = (int) reciprocal;
+                mantissa = (reciprocal - term);
             }
 
             return period;
