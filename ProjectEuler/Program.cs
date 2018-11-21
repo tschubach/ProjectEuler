@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 namespace ProjectEuler
 {
+<<<<<<< HEAD
 	class Program
 	{
 		public static void Main(string[] args)
@@ -81,4 +82,24 @@ namespace ProjectEuler
 			Console.WriteLine("Solution took {0} ms", clock.Elapsed.TotalMilliseconds);
 		}
 	}
+=======
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            try
+            {
+                Console.WriteLine("Answer: " + Probability.ArrangedProbability());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
+        }
+    }
+>>>>>>> 92b51b381ac0473f39dfa6d066008294c84b9ba6
 }
