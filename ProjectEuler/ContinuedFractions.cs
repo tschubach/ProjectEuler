@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace ProjectEuler
 {
-    internal static class ContinuedFractions
+	internal static class ContinuedFractions
     {
         internal static long ConvergentsOfE()
         {

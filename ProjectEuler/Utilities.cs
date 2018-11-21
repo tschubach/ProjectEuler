@@ -348,8 +348,6 @@ namespace ProjectEuler
 				return false;
 			}
 
-			//int counter = 3;
-
 			long i = 5;
 			long w = 2;
 
