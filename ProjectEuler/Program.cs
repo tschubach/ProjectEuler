@@ -9,7 +9,7 @@ namespace ProjectEuler
 		{
 			try
 			{
-				Problem121(); ;
+				Problem121();
 			}
 			catch (Exception e)
 			{
