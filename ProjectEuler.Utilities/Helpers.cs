@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿import-Module -Name posh-git
+
+Start-SshAgent
+
+cd c:\source\repos
 using System.Numerics;
 
 namespace ProjectEuler.Utilities
