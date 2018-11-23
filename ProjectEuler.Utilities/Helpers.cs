@@ -378,6 +378,14 @@ namespace ProjectEuler.Utilities
             return permutations;
         }
 
+        //public static bool IsPermutation(long first, long second)
+        //{
+        //    var result = false;
+
+
+        //    return result;
+        //}
+
         // Function to count the total number
         // of digits in a number.
         public static int NumDigits(long number)
@@ -875,17 +883,33 @@ namespace ProjectEuler.Utilities
             return result;
         }
 
-        public static bool IsPermutation(long item, long prime1)
+        public static bool IsPermutation(long m, long n)
         {
-            foreach (var perm in Permutate(item, true))
+            long[] arr = new long[10];
+
+            long temp = n;
+            while (temp > 0)
             {
-                if (prime1 == long.Parse(perm))
+                arr[temp % 10]++;
+                temp /= 10;
+            }
+
+            temp = m;
+            while (temp > 0)
+            {
+                arr[temp % 10]--;
+                temp /= 10;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (arr[i] != 0)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
     }
 }
