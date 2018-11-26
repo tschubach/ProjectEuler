@@ -3,14 +3,15 @@ using System.Diagnostics;
 
 namespace ProjectEuler
 {
-<<<<<<< HEAD
 	class Program
 	{
 		public static void Main(string[] args)
 		{
+			Stopwatch clock = Stopwatch.StartNew();
+
 			try
 			{
-				Problem121(); ;
+				Problem121();
 			}
 			catch (Exception e)
 			{
@@ -18,6 +19,8 @@ namespace ProjectEuler
 			}
 			finally
 			{
+				clock.Stop();
+				Console.WriteLine("Solution took {0} ms", clock.Elapsed.TotalMilliseconds);
 				Console.ReadLine();
 			}
 		}
@@ -42,8 +45,6 @@ namespace ProjectEuler
 
 		public static void Problem121()
 		{
-			Stopwatch clock = Stopwatch.StartNew();
-
 			int limit = 15;
 			long[] outcomes = new long[limit + 1];
 			outcomes[limit] = 1;
@@ -76,30 +77,8 @@ namespace ProjectEuler
 			}
 
 
-			clock.Stop();
 			Console.WriteLine("There are {0} positive outcomes out of {1}", positive, total);
 			Console.WriteLine("This gives a prize allocation of {0}", total / positive);
-			Console.WriteLine("Solution took {0} ms", clock.Elapsed.TotalMilliseconds);
 		}
 	}
-=======
-    class Program
-    {
-        public static void Main(string[] args)
-        {
-            try
-            {
-                Console.WriteLine("Answer: " + Probability.ArrangedProbability());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.ReadLine();
-            }
-        }
-    }
->>>>>>> 92b51b381ac0473f39dfa6d066008294c84b9ba6
 }
