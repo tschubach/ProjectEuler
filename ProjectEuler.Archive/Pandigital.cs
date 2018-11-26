@@ -41,7 +41,7 @@ namespace ProjectEuler
 					num += j.ToString();
 				}
 
-				var permutations = Helpers.Permutate(long.Parse(num), false);
+				var permutations = Helpers.GetPermutations(num);
 				for (int k = permutations.Count() - 1; k >= 0; k--)
 				{
 					if (Helpers.IsPrime(long.Parse(permutations[k])))
