@@ -209,7 +209,7 @@ namespace ProjectEuler
                     Console.WriteLine(denominator.ToString());
                 }
 
-                totient = phi(denominator);
+                totient = Phi(denominator);
                 double resilience = (double) totient / (double) (denominator - 1);
             }
 
@@ -225,7 +225,7 @@ namespace ProjectEuler
         /// </summary>
         /// <param name="denominator"></param>
         /// <returns>Number of resilient fractions</returns>
-	    public static long phi(long denominator)
+	    public static long Phi(long denominator)
         {
             // Totient (phi) = n * (1 - 1/p1) * (1 - 1/p2) ... (1 - 1/pN)
             // where p1 - pN are the prime factors of n
