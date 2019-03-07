@@ -268,7 +268,6 @@ namespace ProjectEuler
 		}
 
 
-		private static void Problem144()
 		{
 			Stopwatch clock = Stopwatch.StartNew();
 
