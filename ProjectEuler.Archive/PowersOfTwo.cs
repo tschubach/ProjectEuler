@@ -5,15 +5,14 @@ namespace ProjectEuler
 {
     public static class PowersOfTwo
     {
-        public static IEnumerable<BigInteger> GetPowersOfTwoLessThan(BigInteger max)
+        public static IEnumerable<int> GetPowersOfTwo(BigInteger max)
         {
-            var listOfPowers = new List<BigInteger>();
-            BigInteger power = 1;
+            var listOfPowers = new List<int>();
 
-            while (power < max)
+            while (max > 0)
             {
-                listOfPowers.Add(power);
-                power *= 2;
+                listOfPowers.Add((int)max % 2);
+                max /= 2;
             }
 
             return listOfPowers;

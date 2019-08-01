@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using ProjectEuler.Utilities;
@@ -304,7 +305,7 @@ namespace ProjectEuler.Archive
         {
             long total = 0;
             string filename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\p022_names.txt";
-            var names = Helpers.ReadLinesFromFile(filename, ',');
+            var names = Helpers.ReadLinesFromFile(filename, ',').ToList();
 
             names.Sort();
 
@@ -335,7 +336,7 @@ namespace ProjectEuler.Archive
 
         private static long NonAbundantSums()
         {
-            // Get sum of all positive integers which cnnot be written as teh sum of two abundant numbers
+            // Get sum of all positive integers which cnnot be written as the sum of two abundant numbers
             // 12 - Smallest abundant number
             // 28123 - Upper limit of integers that cannot be written as the sum of two abundant numbers
 
@@ -710,8 +711,8 @@ namespace ProjectEuler.Archive
                 return numerator;
             }
 
-            var numFactors = Helpers.PrimeFactors(numerator);
-            var denomFactors = Helpers.PrimeFactors(denominator);
+            var numFactors = Helpers.PrimeFactors(numerator).ToList();
+            var denomFactors = Helpers.PrimeFactors(denominator).ToList();
             long maxFactor = 1;
 
             for (int i = denomFactors.Count - 1; i >= 0; i--)
@@ -954,9 +955,9 @@ namespace ProjectEuler.Archive
         {
             ulong result = 0;
 
-            var triangles = Helpers.TriangleSeries(1000000);
-            var pentagons = Helpers.PentagonSeries(1000000);
-            var hexagons = Helpers.HexagonSeries(1000000);
+            var triangles = Helpers.TriangleSeries(1000000).ToList();
+            var pentagons = Helpers.PentagonSeries(1000000).ToList();
+            var hexagons = Helpers.HexagonSeries(1000000).ToList();
 
             for (int i = 285; i < triangles.Count; i++)
             {
@@ -1023,7 +1024,7 @@ namespace ProjectEuler.Archive
 
             while (count < run)
             {
-                if (Helpers.PrimeFactors(number).Count == run)
+                if (Helpers.PrimeFactors(number).ToList().Count == run)
                 {
                     if (distinct.Count != 0)
                     {

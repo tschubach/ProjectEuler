@@ -6,7 +6,7 @@ namespace ProjectEuler
 {
     internal static class Pandigital
 	{
-		public static List<string> Permutations(int maxDigit, bool includeZero)
+		public static IEnumerable<string> Permutations(int maxDigit, bool includeZero)
 		{
 			var start = includeZero ? 0 : 1;
 			var temp = "";
@@ -16,8 +16,7 @@ namespace ProjectEuler
 				temp += i.ToString();
 			}
 
-			List<string> permutations = Helpers.Permutate(temp, includeZero);
-			return permutations;
+			return Helpers.Permutate(temp, includeZero);
 		}
 
 		public static long NDigitPrime()
@@ -41,7 +40,7 @@ namespace ProjectEuler
 					num += j.ToString();
 				}
 
-				var permutations = Helpers.GetPermutations(num);
+				var permutations = Helpers.GetPermutations(num).ToList();
 				for (int k = permutations.Count() - 1; k >= 0; k--)
 				{
 					if (Helpers.IsPrime(long.Parse(permutations[k])))

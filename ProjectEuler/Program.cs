@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using ProjectEuler.Utilities;
+using ProjectEuler.Archive;
+using System.Numerics;
 
 namespace ProjectEuler
 {
@@ -12,7 +17,38 @@ namespace ProjectEuler
         {
             try
             {
-                PrimeDigitReplacements();
+                var maxVal = (BigInteger)Math.Pow(10, 25);
+                var powersOfTwo = PowersOfTwo.GetPowersOfTwo(1);
+
+                // Displaying the output when 
+                // the bit is '1' in binary 
+                // equivalent of number. 
+                List<int> powerList = powersOfTwo.ToList();
+                var powersOfTwoSums = new List<string>();
+                powersOfTwoSums.Add(CreateDelimitedString(powerList, ","));
+
+                foreach (var item in powersOfTwoSums)
+                {
+                    Console.Write(item);
+                }
+
+                //foreach (var item in powerList)
+                //{
+                //    var tempList = new List<int>();
+                //    if (item % 2 == 0)
+                //    {
+                //        foreach (var val in PowersOfTwo.GetPowersOfTwo(item))
+                //        {
+                //            tempList.Add(val);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        tempList.Add(item);
+                //    }
+                //}
+
+                Console.WriteLine();
             }
             catch (Exception e)
             {
@@ -22,6 +58,23 @@ namespace ProjectEuler
             {
                 Console.ReadLine();
             }
+        }
+
+        private static string CreateDelimitedString(List<int> powerList, string delimiter)
+        {
+            var result = new StringBuilder();
+            for (int i = 0; i < powerList.Count(); i++)
+            {
+                if (powerList[i] == 1)
+                {
+                    result.Append(i);
+
+                    if (i != powerList.Count() - 1)
+                        result.Append(delimiter);
+                }
+            }
+
+            return result.ToString();
         }
 
         public static long ArrangedProbability()
@@ -130,27 +183,24 @@ namespace ProjectEuler
                 {
                     var primeArray = i.ToString().ToCharArray();
                     var upperLimit = Math.Pow(2, primeArray.Length);
-                    var maskedVal = "";
                     for (byte b = 1; b < upperLimit; b++)
                     {
-                        maskedVal = "";
                         var mask = Convert.ToString(b, 2)
                                           .PadLeft(primeArray.Length, '0')
                                           .ToCharArray();
 
+                        var maskedVal = new StringBuilder();
                         for (int j = 0; j < mask.Length; j++)
                         {
-#pragma warning disable S1643 // Strings should not be concatenated using '+' in a loop
-                            maskedVal += mask[j] == '0' ? '.' : primeArray[j];
-#pragma warning restore S1643 // Strings should not be concatenated using '+' in a loop
+                            maskedVal.Append(mask[j] == '0' ? '.' : primeArray[j]);
                         }
 
-                        if (!testDictionary.ContainsKey(maskedVal))
+                        if (!testDictionary.ContainsKey(maskedVal.ToString()))
                         {
-                            testDictionary.Add(maskedVal, 0); ;
+                            testDictionary.Add(maskedVal.ToString(), 0); ;
                         }
 
-                        testDictionary[maskedVal]++;
+                        testDictionary[maskedVal.ToString()]++;
                     }
                 }
             }
@@ -164,7 +214,7 @@ namespace ProjectEuler
                 for (int i = 0; i < 10; i++)
                 {
                     var test = int.Parse(candidate.Replace(".", i.ToString()));
-                    if ( test > 56009 && test.ToString().Length == candidate.Length)
+                    if (test > 56009 && test.ToString().Length == candidate.Length)
                     {
                         if (Helpers.IsPrime(test))
                         {

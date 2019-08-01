@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ProjectEuler.Utilities;
 
 namespace ProjectEuler
@@ -30,7 +31,7 @@ namespace ProjectEuler
         /// <returns></returns>
         internal static long LargestPrimeFactor(long num)
         {
-            var factors = Helpers.PrimeFactors(num);
+            var factors = Helpers.PrimeFactors(num).ToList();
 
             factors.Sort();
             return factors[factors.Count - 1];
@@ -143,7 +144,7 @@ namespace ProjectEuler
             var filename = "C:\\source\\repos\\ProjectEuler\\p081_matrix.txt";
             var matrix = new long[80, 80];
 
-            var numbers = Helpers.ReadLinesFromFile(filename, ',');
+            var numbers = Helpers.ReadLinesFromFile(filename, ',').ToArray();
             int gridSize = matrix.GetLength(0);
 
             // Load numbers into array

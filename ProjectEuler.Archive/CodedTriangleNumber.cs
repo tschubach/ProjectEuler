@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ProjectEuler.Utilities;
 
 namespace ProjectEuler
@@ -8,7 +9,7 @@ namespace ProjectEuler
         public static int Run()
         {
             string filename = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\p042_words.txt";
-            var words = Helpers.ReadLinesFromFile(filename, ',');
+            var words = Helpers.ReadLinesFromFile(filename, ',').ToList();
             var count = 0;
 
             for (int i = 0; i < words.Count; i++)

@@ -10,7 +10,7 @@ namespace ProjectEuler.Utilities
     public static class Helpers
     {
 
-        public static List<string> ReadLinesFromFile(string filename)
+        public static IEnumerable<string> ReadLinesFromFile(string filename)
         {
             var line = "";
             var lines = new List<string>();
@@ -25,7 +25,7 @@ namespace ProjectEuler.Utilities
             return lines;
         }
 
-        public static List<string> ReadLinesFromFile(string filename, char separator)
+        public static IEnumerable<string> ReadLinesFromFile(string filename, char separator)
         {
             var result = new List<string>();
             var lines = ReadLinesFromFile(filename);
@@ -47,7 +47,7 @@ namespace ProjectEuler.Utilities
             return result;
         }
 
-        public static List<long> PrimeFactors(long num)
+        public static IEnumerable<long> PrimeFactors(long num)
         {
             var result = new List<long>();
 
@@ -90,43 +90,6 @@ namespace ProjectEuler.Utilities
                     result.Add(num);
                 }
             }
-
-            return result;
-        }
-
-        public static List<long> FindFactors(long num)
-        {
-            var result = new List<long>();
-
-            // Take out the 2s.
-            while (num % 2 == 0)
-            {
-                if (!result.Contains(2))
-                {
-                    result.Add(2);
-                    num /= 2;
-                }
-            }
-
-            // Take out other primes.
-            long factor = 3;
-            while (factor * factor <= num)
-            {
-                if (num % factor == 0)
-                {
-                    // This is a factor.
-                    result.Add(factor);
-                    num /= factor;
-                }
-                else
-                {
-                    // Go to the next odd number.
-                    factor += 2;
-                }
-            }
-
-            // If num is not 1, then whatever is left is prime.
-            if (num > 1) result.Add(num);
 
             return result;
         }
@@ -177,10 +140,12 @@ namespace ProjectEuler.Utilities
 
                 if (n % p == 0)
                 {
-                    j = p * p; n = n / p;
+                    j = p * p;
+                    n = n / p;
                     while (n % p == 0)
                     {
-                        j = j * p; n = n / p;
+                        j = j * p;
+                        n = n / p;
                     }
                     sum = sum * (j - 1) / (p - 1);
                 }
@@ -270,7 +235,7 @@ namespace ProjectEuler.Utilities
             }
         }
 
-        public static List<string> Permutate(string word)
+        public static IEnumerable<string> Permutate(string word)
         {
             string a = word;
             var list = new List<string>();
@@ -284,7 +249,7 @@ namespace ProjectEuler.Utilities
             return list;
         }
 
-        public static List<string> Permutate(long number, bool includeZero = false)
+        public static IEnumerable<string> Permutate(long number, bool includeZero = false)
         {
             var numbers = new List<string>();
 
@@ -303,7 +268,7 @@ namespace ProjectEuler.Utilities
             return numbers;
         }
 
-        public static List<string> Permutate(string number, bool includeZero)
+        public static IEnumerable<string> Permutate(string number, bool includeZero)
         {
             var numbers = new List<string>();
 
@@ -368,7 +333,7 @@ namespace ProjectEuler.Utilities
             }
         }
 
-        public static List<string> GetPermutations(string chars)
+        public static IEnumerable<string> GetPermutations(string chars)
         {
             var permutations = new List<string>();
             var charList = chars.ToArray().ToList();
@@ -542,7 +507,7 @@ namespace ProjectEuler.Utilities
             int lineCount = 0;
             List<string> lines;
 
-            lines = Helpers.ReadLinesFromFile(filename);
+            lines = ReadLinesFromFile(filename).ToList();
             lineCount = lines.Count;
 
             int[,] inputTriangle = new int[lineCount, lineCount];
@@ -836,7 +801,7 @@ namespace ProjectEuler.Utilities
             return score;
         }
 
-        public static List<ulong> TriangleSeries(ulong numTerms)
+        public static IEnumerable<ulong> TriangleSeries(ulong numTerms)
         {
             var series = new List<ulong>();
 
@@ -848,7 +813,7 @@ namespace ProjectEuler.Utilities
             return series;
         }
 
-        public static List<ulong> PentagonSeries(ulong numTerms)
+        public static IEnumerable<ulong> PentagonSeries(ulong numTerms)
         {
             var series = new List<ulong>();
 
@@ -860,7 +825,7 @@ namespace ProjectEuler.Utilities
             return series;
         }
 
-        public static List<ulong> HexagonSeries(ulong numTerms)
+        public static IEnumerable<ulong> HexagonSeries(ulong numTerms)
         {
             var series = new List<ulong>();
 

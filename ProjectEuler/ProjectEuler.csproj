@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectEuler.Archive\ProjectEuler.Archive.csproj" />
     <ProjectReference Include="..\ProjectEuler.Utilities\ProjectEuler.Utilities.csproj" />
   </ItemGroup>
 
